@@ -25,6 +25,10 @@ MariaDB [db_lesson]> INSERT INTO `people` (`name`, `email`, `age`, `department_i
     -> (NULL, NULL, NULL, 4),
     -> (NULL, NULL, NULL, 5);
 
+〈以下、NULLにデータを入れるために追記〉
+UPDATE people SET age = 30, gender = 1 WHERE age IS NULL OR gender IS NULL;
+UPDATE people SET email = CONCAT('user', person_id, '@gizumo.jp') WHERE email IS NULL;
+
 (reports)
 INSERT INTO `reports` (`content`, `person_id`, `created_at`) VALUES ('Report content 13', 13, NOW()),
     -> ('Report content 14', 14, NOW()),
@@ -36,6 +40,10 @@ INSERT INTO `reports` (`content`, `person_id`, `created_at`) VALUES ('Report con
     -> ('Report content 20', 20, NOW()),
     -> ('Report content 21', 21, NOW()),
     -> ('Report content 22', 22, NOW());
+
+〈reports内のcreated_atのデフォルト値について〉
+「CURRENT_TIMESTAMP」が設定されています。
+これは、レコードが挿入された時点の日時を自動的に記録するためのものです。
 
 Q4
 UPDATE people SET department_id = 1 WHERE person_id = 1;
